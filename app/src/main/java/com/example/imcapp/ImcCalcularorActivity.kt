@@ -1,17 +1,18 @@
 package com.example.imcapp
 
 import android.os.Bundle
-import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class ImcCalcularorActivity : AppCompatActivity() {
 
@@ -26,7 +27,10 @@ class ImcCalcularorActivity : AppCompatActivity() {
     private lateinit var btnAddWeight: FloatingActionButton
     private lateinit var btnSubtractAge: FloatingActionButton
     private lateinit var btnAddAge: FloatingActionButton
+    private lateinit var btnCalcular: AppCompatButton
     private var currentAge = 26
+    private var currentWeight = 60
+    private var resultado:Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +49,8 @@ class ImcCalcularorActivity : AppCompatActivity() {
 
     private fun initUI() {
         setGenderColor()
+        setWeight(null)
+        setAge(null)
     }
 
     private fun initListeners() {
@@ -57,25 +63,55 @@ class ImcCalcularorActivity : AppCompatActivity() {
             setGenderColor()
         }
         btnAddWeight.setOnClickListener {
-            setWeight()
+            setWeight(true)
         }
         btnSubtractWeight.setOnClickListener {
-            setWeight()
+            setWeight(false)
         }
         btnAddAge.setOnClickListener {
-            setAge()
+            setAge(true)
         }
         btnSubtractAge.setOnClickListener {
-            setAge()
+            setAge(false)
+        }
+
+        btnCalcular.setOnClickListener{
+            calculateIMC()
+            navigateToResult(resultado)
+        }
+
+        rsHeight.addOnChangeListener { _, value, _ ->
+            //tvHeight.text = value.toString()
+            tvHeight.text = DecimalFormat("#.##").format(value) + " cm"
         }
     }
 
-    private fun setWeight() {
-        TODO("Not yet implemented")
+    private fun navigateToResult(resultado: Double) {
+
     }
 
-    private fun setAge() {
-        TODO("Not yet implemented")
+    private fun calculateIMC(): Double {
+        val alturaEnMetros = tvHeight.text.toString().replace(" cm", "").toDouble() / 100
+        resultado = currentWeight/(alturaEnMetros*alturaEnMetros)
+        return resultado
+    }
+
+    private fun setWeight(add: Boolean?) {
+        if (add == true) {
+            currentWeight++
+        } else {
+            if (currentWeight > 0) currentWeight--
+        }
+        tvWeight.text = "$currentWeight"
+    }
+
+    private fun setAge(add: Boolean?) {
+        if (add == true) {
+            currentAge++
+        } else {
+            if (currentAge > 0) currentAge--
+        }
+        tvAge.text = "$currentAge"
     }
 
     private fun setGenderColor() {
@@ -104,11 +140,7 @@ class ImcCalcularorActivity : AppCompatActivity() {
         tvAge = findViewById(R.id.tvAge)
         btnAddAge = findViewById(R.id.btnAddAge)
         btnSubtractAge = findViewById(R.id.btnSubtractAge)
-
-        rsHeight.addOnChangeListener { _, value, _ ->
-            //tvHeight.text = value.toString()
-            tvHeight.text = DecimalFormat("#.##").format(value) + " cm"
-        }
+        btnCalcular = findViewById(R.id.btnCalcular)
     }
 
 
