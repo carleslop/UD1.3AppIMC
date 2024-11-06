@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginVertical="20dp"
         android:text="@string/tu_resultado"
         android:textColor="@color/white"
         android:textSize="38sp"
@@ -23,7 +23,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_result"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         app:cardBackgroundColor="@color/bg_comp"
         app:cardCornerRadius="16dp"
@@ -45,7 +45,8 @@
                 android:text="@string/sobrepeso"
                 android:textColor="@color/orange"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginVertical="30dp"/>
 
             <TextView
                 android:id="@+id/tvNumber"
@@ -54,15 +55,18 @@
                 android:text="@string/_27_46"
                 android:textColor="@color/white"
                 android:textSize="60sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginVertical="30dp"/>
 
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estas por encima de tu peso óptimo."
+                android:text="Estás por encima de lo óptimo para tu peso y altura."
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="26sp"
+                android:layout_marginVertical="30dp"
+                android:layout_marginHorizontal="15dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -72,7 +76,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="32dp"
         android:background="@color/bg_fab"
-        android:text="@string/calcular"
-        app:layout_constraintTop_toBottomOf="@id/cv_result" />
+        android:text="@string/re_calcular"
+        app:layout_constraintTop_toBottomOf="@id/cv_result"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
