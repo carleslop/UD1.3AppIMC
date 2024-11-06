@@ -9,16 +9,16 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
 import java.text.DecimalFormat
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class ImcCalcularorActivity : AppCompatActivity() {
 
     private lateinit var viewMale: CardView
     private lateinit var viewFemale: CardView
-    private var isMaleSelected:Boolean = true
+    private var isMaleSelected: Boolean = true
     private lateinit var tvHeight: TextView
     private lateinit var rsHeight: RangeSlider
     private lateinit var tvWeight: TextView
@@ -30,7 +30,7 @@ class ImcCalcularorActivity : AppCompatActivity() {
     private lateinit var btnCalcular: AppCompatButton
     private var currentAge = 26
     private var currentWeight = 60
-    private var resultado:Double = 0.0
+    private var resultado: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +55,11 @@ class ImcCalcularorActivity : AppCompatActivity() {
 
     private fun initListeners() {
         viewMale.setOnClickListener {
-            isMaleSelected=true
+            isMaleSelected = true
             setGenderColor()
         }
         viewFemale.setOnClickListener {
-            isMaleSelected=false
+            isMaleSelected = false
             setGenderColor()
         }
         btnAddWeight.setOnClickListener {
@@ -75,7 +75,7 @@ class ImcCalcularorActivity : AppCompatActivity() {
             setAge(false)
         }
 
-        btnCalcular.setOnClickListener{
+        btnCalcular.setOnClickListener {
             calculateIMC()
             navigateToResult(resultado)
         }
@@ -92,7 +92,7 @@ class ImcCalcularorActivity : AppCompatActivity() {
 
     private fun calculateIMC(): Double {
         val alturaEnMetros = tvHeight.text.toString().replace(" cm", "").toDouble() / 100
-        resultado = currentWeight/(alturaEnMetros*alturaEnMetros)
+        resultado = currentWeight / (alturaEnMetros * alturaEnMetros)
         return resultado
     }
 
@@ -120,12 +120,12 @@ class ImcCalcularorActivity : AppCompatActivity() {
     }
 
     private fun getBackgroundColor(isComponentSelected: Boolean): Int {
-        val colorReference = if(isComponentSelected) {
+        val colorReference = if (isComponentSelected) {
             R.color.bg_comp_sel
         } else {
             R.color.bg_comp
         }
-        return ContextCompat.getColor(this,colorReference)
+        return ContextCompat.getColor(this, colorReference)
     }
 
     private fun initComponents() {
