@@ -13,4 +13,12 @@
     <string name="sobrepeso">Sobrepeso</string>
     <string name="_27_46">27.46</string>
     <string name="re_calcular">RE-CALCULAR</string>
+    <string name="textoInferior">Estas por debajo de tu peso ideal.</string>
+    <string name="tituloInferior">Delgadez</string>
+    <string name="tituloNormal">Normal</string>
+    <string name="textoNormal">Estas de categoria.</string>
+    <string name="tituloSuperior">Sobrepeso</string>
+    <string name="textoSuperior">Peso superior al normal.</string>
+    <string name="tituloObesidad">Obesidad</string>
+    <string name="textoObesidad">Peso muy por encima de lo recomendado.</string>
 </resources>

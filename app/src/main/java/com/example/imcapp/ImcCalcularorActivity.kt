@@ -1,5 +1,6 @@
 package com.example.imcapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -87,7 +88,9 @@ class ImcCalcularorActivity : AppCompatActivity() {
     }
 
     private fun navigateToResult(resultado: Double) {
-
+        val intent = Intent(this, ImcResultActivity::class.java)
+        intent.putExtra("resultadoIMC", resultado)
+        startActivity(intent)
     }
 
     private fun calculateIMC(): Double {
@@ -99,7 +102,7 @@ class ImcCalcularorActivity : AppCompatActivity() {
     private fun setWeight(add: Boolean?) {
         if (add == true) {
             currentWeight++
-        } else {
+        } else  if (add == false){
             if (currentWeight > 0) currentWeight--
         }
         tvWeight.text = "$currentWeight"
@@ -108,7 +111,7 @@ class ImcCalcularorActivity : AppCompatActivity() {
     private fun setAge(add: Boolean?) {
         if (add == true) {
             currentAge++
-        } else {
+        } else if (add == false){
             if (currentAge > 0) currentAge--
         }
         tvAge.text = "$currentAge"

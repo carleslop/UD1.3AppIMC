@@ -1,5 +1,6 @@
 package com.example.imcapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.text.DecimalFormat
 
 class ImcResultActivity : AppCompatActivity() {
     private lateinit var tv_category: TextView
@@ -27,18 +29,39 @@ class ImcResultActivity : AppCompatActivity() {
 
         initComponents()
         initListeners()
-        initUI()
+        val resultadoIMC: Double = intent.extras!!.getDouble("resultadoIMC")
+        tvNumber.text = DecimalFormat("#.##").format(resultadoIMC)
+        compCorporal(resultadoIMC)
     }
 
-    private fun initUI() {
-        TODO("Not yet implemented")
+    private fun compCorporal(resultadoIMC: Double) {
+        if (resultadoIMC < 18.5) {
+            tv_category.text = getString(R.string.tituloInferior)
+            tvDescription.text = getString(R.string.textoInferior)
+        } else if (resultadoIMC >= 18.5 && 24.9 > resultadoIMC) {
+            tv_category.text = getString(R.string.tituloNormal)
+            tvDescription.text = getString(R.string.textoNormal)
+        } else if (resultadoIMC >= 24.9 && 29.9 > resultadoIMC) {
+            tv_category.text = getString(R.string.tituloSuperior)
+            tvDescription.text = getString(R.string.textoSuperior)
+        } else {
+            tv_category.text = getString(R.string.tituloObesidad)
+            tvDescription.text = getString(R.string.textoObesidad)
+        }
     }
+
 
     private fun initListeners() {
-        TODO("Not yet implemented")
+        btnCalcular.setOnClickListener {
+            val intent = Intent(this, ImcCalcularorActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initComponents() {
-        TODO("Not yet implemented")
+        tv_category = findViewById(R.id.tv_category)
+        tvNumber = findViewById(R.id.tvNumber)
+        tvDescription = findViewById(R.id.tvDescription)
+        btnCalcular = findViewById(R.id.btnCalcular)
     }
 }
